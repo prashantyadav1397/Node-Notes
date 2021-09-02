@@ -75,4 +75,18 @@ The problem -> Callback Hell
 > const url = require("url"); <br>const pathName = req.url; <br> if (pathName === "/" || pathName === "/overview") { <br> res.end("This is overview"); <br>
 > } else if (pathName === "/product") { <br>
 > res.end("This is product"); <br>
+> } else { <br>
+> res.writeHead(404, {<br> "Content-type": "text/html",<br> "my-own-header": "test header"<br> });<br> res.end("<h6> Page Not found</h6>"); <br>
 > }
+
+### Building a simple web API
+
+> const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8"); <br>
+> const productData = JSON.parse(data); <br>
+>
+> else if (pathName === "/api") { <br> res.writeHead(200, {
+> "Content-type": "application/json", }); <br> res.end(data); <br> }
+
+
+
+
