@@ -101,4 +101,14 @@ this indicates a dependency required on production build
 
 > npm install express --save-dev
 
-this indicates a dev dependency required during the build cycle
+this indicates a dev dependency required during the build cycle. Some dependency can be installed globally for use in multiple projects.
+
+> npm install express --global
+
+### How the web works
+
+> Web works with the request-response model or the client-server architecture. <br>
+> https://www.google.com/maps/ - https/http refers to protocol, www.google.com refers to the domain name, and /maps refers to the rsource requested.
+> <br>
+> client browser does a DNS lookup for the domain name and the path may look as below. <br>
+> https://216.58.211.206:443/ <br> port 443 - https request and <br> port - 80 http request
