@@ -36,8 +36,9 @@ Exiting the Node in CLI mode
 
 Reading and Writing files
 
-> const fs = require("fs");
+> const fs = require("fs"); <br>
 > const textIn = fs.readdirSync("./txt/input.txt", "utf-8");
 
->const textOut = `This is an example of writing file to existing file: ${testIn}. \n Created on ${Date.now()}`;
->fs.writeFileSync("./txt/Output.txt", textOut);
+> const textOut = `This is an example of writing file to existing file: ${testIn}. \n Created on ${Date.now()}`;
+
+> fs.writeFileSync("./txt/Output.txt", textOut);
