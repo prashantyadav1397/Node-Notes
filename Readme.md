@@ -130,3 +130,34 @@ this indicates a dev dependency required during the build cycle. Some dependency
 > Event loops works with the callback queues. <br> Start<ol><li>Expired tiemr callbacks - setTimeout(), etc</li><li>I/O polling and callbacks - file read write, networking etc</li><li>setImmediate callbacks </li><li>Close callbacks - web socket shutdown, etc</li></ol> Node then checks if any pending I/O tasks or timer are available, if yes the loop again, if not, exit the program. <br> There are two other special queues. <ol><li>PROCESS.NEXTTICK() queue</li><LI>Other microtasks queue</LI></ol>
 
 ### Event Loop in action
+
+> const fs = require("fs");<br>
+> setTimeout(() => console.log("timer 1 finished"), 0);<br>
+> setImmediate(() => console.log("Immediate 1 finished"));<br>
+> fs.readFile("/test-file.txt", () => { <br>
+> console.log("I/O finished \n-----------------------------"); <br>
+> setTimeout(() => console.log("timer 2 finished"), 0); <br>
+> setTimeout(() => console.log("timer 3 finished"), 3000); <br>
+> setImmediate(() => console.log("Immediate 2 finished")); <br>
+> process.nextTick(() => console.log("Process.nextTick()")); <br>
+> }); <br>
+> console.log("Hello from the top level code");
+
+This will result in the below Output: -
+
+> Hello from the top level code
+> timer 1 finished  
+> Immediate 1 finished
+> I/O finished
+> Process.nextTick()
+> Immediate 2 finished
+> timer 2 finished
+> timer 3 finished
+
+Setting the thread pool size to use lesser than 4 default threads
+
+> process.env.UV_THREADPOOL_SIZE = 2;
+
+### Event and Event-Driven Architecture
+
+>Event emitter - emits named event (request hitting the server, timer expiring, file finished reading) <br> Event Listeners - picks up the emitted events (set up by devs) <br> Attached callback functions - event listeners reacts to event by calling the attached callbacks.
