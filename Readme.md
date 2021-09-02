@@ -92,3 +92,13 @@ The problem -> Callback Hell
 > const path = req.url; <br>
 > console.log(url.parse(path, true)); <br>
 > const { query, pathname } = url.parse(path, true);
+
+### Type of Package and Installs
+
+> npm install express
+
+this indicates a dependency required on production build
+
+> npm install express --save-dev
+
+this indicates a dev dependency required during the build cycle
