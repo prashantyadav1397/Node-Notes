@@ -72,7 +72,7 @@ The problem -> Callback Hell
 
 ### Routing in Node
 
-> const url = require("url"); <br> if (pathName === "/" || pathName === "/overview") { <br> res.end("This is overview"); <br>
-} else if (pathName === "/product") { <br>
-res.end("This is product"); <br>
-}
+> const url = require("url"); <br>const pathName = req.url; <br> if (pathName === "/" || pathName === "/overview") { <br> res.end("This is overview"); <br>
+> } else if (pathName === "/product") { <br>
+> res.end("This is product"); <br>
+> }
