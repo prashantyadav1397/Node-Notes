@@ -40,4 +40,4 @@ Reading and Writing files
 > const textIn = fs.readdirSync("./txt/input.txt", "utf-8");
 
 >const textOut = `This is an example of writing file to existing file: ${testIn}. \n Created on ${Date.now()}`;
-fs.writeFileSync("./txt/Output.txt", textOut);
+>fs.writeFileSync("./txt/Output.txt", textOut);
