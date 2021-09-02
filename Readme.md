@@ -64,6 +64,15 @@ The problem -> Callback Hell
 
 ### Creating a Simple web Server
 
-> const http = require("http"); <br>http.createServer((req, res) => { <br>
+> const http = require("http"); <br>const server = http.createServer((req, res) => { <br>
 > res.end("Hello from the server!"); <br>
+> }); <br> server.listen(8000, "127.0.0.1", () => { <br>
+> console.log("Listening to the incoming request..."); <br>
 > });
+
+### Routing in Node
+
+> const url = require("url"); <br> if (pathName === "/" || pathName === "/overview") { <br> res.end("This is overview"); <br>
+} else if (pathName === "/product") { <br>
+res.end("This is product"); <br>
+}
