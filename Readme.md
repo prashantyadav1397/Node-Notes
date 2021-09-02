@@ -107,8 +107,9 @@ this indicates a dev dependency required during the build cycle. Some dependency
 
 ### How the web works
 
-> Web works with the request-response model or the client-server architecture. <br>
-> https://www.google.com/maps/ - https/http refers to protocol, www.google.com refers to the domain name, and /maps refers to the rsource requested.
+> Web works with the request-response model or the client-server architecture. <br> > https://www.google.com/maps/ - https/http refers to protocol, www.google.com refers to the domain name, and /maps refers to the rsource requested.
 > <br>
-> client browser does a DNS lookup for the domain name and the path may look as below. <br>
-> https://216.58.211.206:443/ <br> port 443 - https request and <br> port - 80 http request
+> client browser does a DNS lookup for the domain name and the path may look as below.
+> <br> https://216.58.211.206:443/ <br> port 443 - HTTPS request and <br> port - 80 HTTP request
+> <br> The request has some fundamental requirement like HTTP method + request target + HTTP version, HTTP request headers, Request Body (optional).
+> <br> Similarly, the response has some fundamental requirement like HTTP version + status code + status message, HTTP response headers, Response Body
