@@ -37,8 +37,15 @@ Exiting the Node in CLI mode
 Reading and Writing files
 
 > const fs = require("fs"); <br>
-> const textIn = fs.readdirSync("./txt/input.txt", "utf-8");
+> const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
 
-> const textOut = `This is an example of writing file to existing file: ${testIn}. \n Created on ${Date.now()}`;
-
+> const textOut = `This is an example of writing file to existing file: ${testIn}. \n Created on ${Date.now()}`; <br>
 > fs.writeFileSync("./txt/Output.txt", textOut);
+
+Synchronous vs Asynchronous ( Blocking vs Non-Blocking)
+
+> Sync functions can block the task until the result is obtained from the running process. This is called as blocking code. <br> This problem can be avoided by using the non-blocking code using the async functions that run in the background and carry on with the rest of the process.
+
+Node JS Thread
+
+> For each application only one thread is available. This means when ever the code runs it can be executed on a single thread only, irrespective of the number of users or applicatioons accessing the thread. Only one thread is available to all. So, when a single user blocks the thread with a sync function, the other application or users can not use the thread for execution. Thus the callbacks based async functions are used.
