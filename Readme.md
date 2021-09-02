@@ -113,3 +113,18 @@ this indicates a dev dependency required during the build cycle. Some dependency
 > <br> https://216.58.211.206:443/ <br> port 443 - HTTPS request and <br> port - 80 HTTP request
 > <br> The request has some fundamental requirement like HTTP method + request target + HTTP version, HTTP request headers, Request Body (optional).
 > <br> Similarly, the response has some fundamental requirement like HTTP version + status code + status message, HTTP response headers, Response Body
+
+### Noed architecture - v8 engine and libuv
+
+> libuv is an open source library with focus on async I/O, event loop and thread pool support (for heavy lifting processing). <br>
+>
+> Process, threads and thread pool
+> Single thread - sequence of instruction
+>
+> <ol> <li>Initialize the program </li>
+> <li>Execute top level code</li><li>Require modules</li><li>Register Callbacks</li><li>Start Event Loop</li></ol>
+> In case of heavy lifting or CPU intensive operations, Node used Thread pool that provides an additional of 4 threads. This can be extended upto 128 thread on demand. The event loop can offload tasks to thread pool. <br>ex- file operations, cryptography, compression, DNS look-up, etc.
+
+### The Node JS Event Loop
+
+>
