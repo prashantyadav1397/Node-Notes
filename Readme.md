@@ -42,7 +42,7 @@ Node JS is a JavaScript runtime built on google's v8 javascript engine which all
 > const textOut = `This is an example of writing file to existing file: ${testIn}. \n Created on ${Date.now()}`; <br>
 > fs.writeFileSync("./txt/Output.txt", textOut);
 
-### Synchronous vs Asynchronous ( Blocking vs Non-Blocking)
+### Synchronous vs Asynchronous (Blocking vs Non-Blocking Code)
 
 > Sync functions can block the task until the result is obtained from the running process. This is called as blocking code. <br> This problem can be avoided by using the non-blocking code using the async functions that run in the background and carry on with the rest of the process.
 
@@ -145,19 +145,27 @@ this indicates a dev dependency required during the build cycle. Some dependency
 
 This will result in the below Output: -
 
-> Hello from the top level code
-> timer 1 finished  
-> Immediate 1 finished
-> I/O finished
-> Process.nextTick()
-> Immediate 2 finished
-> timer 2 finished
+> Hello from the top level code<br>
+> timer 1 finished <br>
+> Immediate 1 finished<br>
+> I/O finished<br>
+> Process.nextTick() <br>
+> Immediate 2 finished<br>
+> timer 2 finished<br>
 > timer 3 finished
 
 Setting the thread pool size to use lesser than 4 default threads
 
 > process.env.UV_THREADPOOL_SIZE = 2;
 
-### Event and Event-Driven Architecture
+### Event and Event-Driven Architecture in a Nutshell
 
->Event emitter - emits named event (request hitting the server, timer expiring, file finished reading) <br> Event Listeners - picks up the emitted events (set up by devs) <br> Attached callback functions - event listeners reacts to event by calling the attached callbacks.
+> Event emitter - emits named event (request hitting the server, timer expiring, file finished reading) <br> Event Listeners - picks up the emitted events (set up by devs) <br> Attached callback functions - event listeners reacts to event by calling the attached callbacks.
+
+EventEmitter in Action
+
+> const EventEmitter = require("events"); <br> const myEmitter = new EventEmitter(); <br> myEmitter.on("newSale", () => console.log("there was a new sale")); <br> myEmitter.emit("newSale", 9);
+
+Streams
+
+> Streams are used for processing the data piece by piece (read or write) without completing the whole read/write operation at once and thus keeing the memory free. Streams are perfect for handling huge amount of data. More efficient in Data processing in terms of memory (no need to keep all the data in memory) and Time (no need to wait until all data is available) <br>Type of Stream: -<ol><li>Readable Stream - streams from which we can read (consume) data<ul><li>Example - http requests, fs read streams</li><li>Important Events - data, end</li><li>Important functions - pipe(), read()</li></ul></li><li>Writable Stream - Streams to which we can write data <ul><li>Example - http response, fs write streams</li><li>Important Events - drain, finish</li><li>Important functions - write(), end()</li></ul></li><li>Duplex Stream</li><li>Transform Stream</li></ol> <br>
