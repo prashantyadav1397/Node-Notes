@@ -1,4 +1,4 @@
-# Node JS Runtime
+# Node JS Runtime - with Express JS and Mongo DB
 
 Node JS is a JavaScript runtime built on google's v8 javascript engine which allows user to run JavaScript outside the browser without having the restrictinos seen in browser
 
@@ -76,7 +76,7 @@ The problem -> Callback Hell
 > } else if (pathName === "/product") { <br>
 > res.end("This is product"); <br>
 > } else { <br>
-> res.writeHead(404, {<br> "Content-type": "text/html",<br> "my-own-header": "test header"<br> });<br> res.end("<h6> Page Not found</h6>"); <br>
+> res.writeHead(404, {<br> "Content-type": "text/html",<br> "my-own-header": "test header"<br> });<br> res.end("< h6> Page Not found</ h6>"); <br>
 > }
 
 ### Building a simple web API
@@ -179,6 +179,10 @@ Stream in Action: -
 
 Optimising using pipes
 
-> const readable = fs.createReadStream("test-file.txt"); <br>
-> readable.pipe(res);<br>
+> server.on("request", (req, res) => {<br>const readable = fs.createReadStream("test-file.txt"); <br>
+> readable.pipe(res); }); <br>
 > // readabelSource.pipe(writableDestinations)
+
+# Express JS
+
+# Mongo DB
