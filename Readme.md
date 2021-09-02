@@ -114,7 +114,7 @@ this indicates a dev dependency required during the build cycle. Some dependency
 > <br> The request has some fundamental requirement like HTTP method + request target + HTTP version, HTTP request headers, Request Body (optional).
 > <br> Similarly, the response has some fundamental requirement like HTTP version + status code + status message, HTTP response headers, Response Body
 
-### Noed architecture - v8 engine and libuv
+### Node architecture - v8 engine and libuv
 
 > libuv is an open source library with focus on async I/O, event loop and thread pool support (for heavy lifting processing). <br>
 >
@@ -127,4 +127,6 @@ this indicates a dev dependency required during the build cycle. Some dependency
 
 ### The Node JS Event Loop
 
->
+> Event loops works with the callback queues. <br> Start<ol><li>Expired tiemr callbacks - setTimeout(), etc</li><li>I/O polling and callbacks - file read write, networking etc</li><li>setImmediate callbacks </li><li>Close callbacks - web socket shutdown, etc</li></ol> Node then checks if any pending I/O tasks or timer are available, if yes the loop again, if not, exit the program. <br> There are two other special queues. <ol><li>PROCESS.NEXTTICK() queue</li><LI>Other microtasks queue</LI></ol>
+
+### Event Loop in action
