@@ -168,4 +168,17 @@ EventEmitter in Action
 
 Streams
 
-> Streams are used for processing the data piece by piece (read or write) without completing the whole read/write operation at once and thus keeing the memory free. Streams are perfect for handling huge amount of data. More efficient in Data processing in terms of memory (no need to keep all the data in memory) and Time (no need to wait until all data is available) <br>Type of Stream: -<ol><li>Readable Stream - streams from which we can read (consume) data<ul><li>Example - http requests, fs read streams</li><li>Important Events - data, end</li><li>Important functions - pipe(), read()</li></ul></li><li>Writable Stream - Streams to which we can write data <ul><li>Example - http response, fs write streams</li><li>Important Events - drain, finish</li><li>Important functions - write(), end()</li></ul></li><li>Duplex Stream</li><li>Transform Stream</li></ol> <br>
+> Streams are used for processing the data piece by piece (read or write) without completing the whole read/write operation at once and thus keeing the memory free. Streams are perfect for handling huge amount of data. More efficient in Data processing in terms of memory (no need to keep all the data in memory) and Time (no need to wait until all data is available) <br>Type of Stream: -<ol><li>Readable Stream - streams from which we can read (consume) data<ul><li>Example - http requests, fs read streams</li><li>Important Events - data, end</li><li>Important functions - pipe(), read()</li></ul></li><li>Writable Stream - Streams to which we can write data <ul><li>Example - http response, fs write streams</li><li>Important Events - drain, finish</li><li>Important functions - write(), end()</li></ul></li><li>Duplex Stream - Streams that are both readable and writable <ul><li>Example - net web socket</li></ul></li><li>Transform Stream - Duplex streams that transform data as it is written or read<ul><li>Example - zlib Gzip creation</li></ul></li></ol>
+
+Stream in Action: -
+
+> const readable = fs.createReadStream("test-file.txt"); <br>
+> readable.on("data", (chunk) => { res.write(chunk); }); <br>
+> readable.on("end", () => { res.end(); }); <br>
+> readable.on("error", (err) => { res.statusCode = 500; res.end("Error"); });
+
+Optimising using pipes
+
+> const readable = fs.createReadStream("test-file.txt"); <br>
+> readable.pipe(res);<br>
+> // readabelSource.pipe(writableDestinations)
