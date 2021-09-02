@@ -81,12 +81,14 @@ The problem -> Callback Hell
 
 ### Building a simple web API
 
-> const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8"); <br>
+> const data = fs.readFileSync('`${__dirname}/dev-data/data.json`', "utf-8"); <br>
 > const productData = JSON.parse(data); <br>
 >
 > else if (pathName === "/api") { <br> res.writeHead(200, {
 > "Content-type": "application/json", }); <br> res.end(data); <br> }
 
+### Parsing variables from URLs
 
-
-
+> const path = req.url; <br>
+> console.log(url.parse(path, true)); <br>
+> const { query, pathname } = url.parse(path, true);
