@@ -23,7 +23,7 @@ Node JS is a JavaScript runtime built on google's v8 javascript engine which all
 
 ### Don't use Node JS for -
 
-> 1.  Apps with heavy server side processing ( CPU intensive)
+> 1.  Apps with heavy server side processing (CPU Intensive)
 
 ### Running Node in CLI mode
 
@@ -183,6 +183,11 @@ Optimising using pipes
 > readable.pipe(res); }); <br>
 > // readabelSource.pipe(writableDestinations)
 
+### Asynchronous JS - Promises and await
+
+Consuming Promises
+
+> axios<br>.get('https://github.com/') <br> .then( (res)=>{ console.log(res.body.message) } )<br>.catch( (err)=>{ console.log(err.message) } )
 
 # Express JS
 
