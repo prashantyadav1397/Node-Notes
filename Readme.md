@@ -187,7 +187,11 @@ Optimising using pipes
 
 Consuming Promises
 
-> axios<br>.get('https://github.com/') <br> .then( (res)=>{ console.log(res.body.message) } )<br>.catch( (err)=>{ console.log(err.message) } )
+> axios<br>.get('https://github.com/') <br> .then( (res)=>{ console.log(res.body.message) } )<br>.catch( (err)=>{ console.log(err.message) } );
+
+Consuming Promises with await
+
+> const asyncget = () = > {<br> try { <br> const data = await axios.get('https://github.com/')<br> } catch(err) {<br> console.log(err) } <br>}
 
 # Express JS
 
