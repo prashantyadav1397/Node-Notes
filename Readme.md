@@ -199,4 +199,32 @@ await multiple promise
 
 # Express JS
 
+### What is Express JS?
+
+> Express is minimal node js framework.<br> Express contains a very robust set of features like: complex routing, easier handling of requests and responses, middleware, server-side rendering, etc.
+
+### Express and basic routing
+
+> const express = require('express'); <br>
+> const app = express();<br>
+> app.get('/', (req, res) => { <br>
+> res.status(200).json({ message: 'hello from the server', app: 'Natours' });<br>
+> });<br>
+> const port = 3000;<br>
+> app.listen(port, () => {<br>
+> console.log('listening on port ', `${port}`);<br>
+> });
+
+### API and Restful API Design
+
+> API (Application Programming Interface) is a piece of software that can be used by another piece of software, in order to allow applications to talk to each other (data or methods). <br> Rest Architecture - Representational State Transfer <ol><li>Separate API into logical resources - any information that can be named can be a resource. Ex: - users, review, etc.</li><li>Expose structured resource-based URLs - /users, /tours, etc </li><li>Use HTTP methods - GET, PUT, POST, PATCH, DELETE</li><li>Send data as JSON (usually)</li><li>Be stateless - all the state should be handled at the client, meaning each request must contain all the information necessary to process the request. The server should not have to remember the previous requests</li></ol>
+
+### Parameters from request URLs
+
+> app.get('/api/v1/tours/:id, (req, res)=>{<br> console.log( req.params);<br>}); <br>Here :id refers to parameter in the request URL who's value is required to be sent from the client side.
+
+Adding optional Parameters
+
+> app.get('/api/v1/tours/:id?, (req, res)=>{<br> console.log( req.params);<br>}); <br>Here :id? refers to an optional parameter in the request URL who's value may not be sent as part of the request URL.
+
 # Mongo DB
