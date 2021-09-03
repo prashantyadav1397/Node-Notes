@@ -193,6 +193,10 @@ Consuming Promises with await
 
 > const asyncGet = async () = > {<br> try { <br> const data = await axios.get('https://github.com/')<br> } catch(err) {<br> console.log(err) } <br>} <br> asyncGet();
 
+await multiple promise
+
+> const asyncGet = async () = > {<br> try { <br> const pro1 =axios.get('https://github.com/')<br> const pro2 =axios.get('https://github.com/')<br> const pro3 =axios.get('https://github.com/')<br> const all = await Promise.all( [pro1, pro2, pro3] ); <br>} catch(err) {<br> console.log(err) } <br>} <br> asyncGet();
+
 # Express JS
 
 # Mongo DB
