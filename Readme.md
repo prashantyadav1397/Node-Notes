@@ -1,6 +1,6 @@
 # Node JS Runtime - with Express JS and Mongo DB
 
-Node JS is a JavaScript runtime built on google's v8 javascript engine which allows user to run JavaScript outside the browser without having the restrictinos seen in browser
+Node JS is a JavaScript runtime built on google's v8 javascript engine which allows user to run JavaScript outside the browser without having the restrictions seen in browser
 
 > Node JS = ( v8 ( JavaScript ) )
 
@@ -27,7 +27,7 @@ Node JS is a JavaScript runtime built on google's v8 javascript engine which all
 
 ### Running Node in CLI mode
 
-> node
+> node <br>
 > Enter the commands or script to run in the CLI
 
 ### Exiting the Node in CLI mode
@@ -39,7 +39,7 @@ Node JS is a JavaScript runtime built on google's v8 javascript engine which all
 > const fs = require("fs"); <br>
 > const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
 
-> const textOut = `This is an example of writing file to existing file: ${testIn}. \n Created on ${Date.now()}`; <br>
+> const textOut = '`This is an example of writing file to existing file: ${testIn}. \n Created on ${Date.now()}`'; <br>
 > fs.writeFileSync("./txt/Output.txt", textOut);
 
 ### Synchronous vs Asynchronous (Blocking vs Non-Blocking Code)
@@ -48,7 +48,7 @@ Node JS is a JavaScript runtime built on google's v8 javascript engine which all
 
 ### Node JS Thread
 
-> For each application only one thread is available. This means when ever the code runs it can be executed on a single thread only, irrespective of the number of users or applicatioons accessing the thread. Only one thread is available to all. So, when a single user blocks the thread with a sync function, the other application or users can not use the thread for execution. Thus the callbacks based async functions are used. The function can process in the background and the result is returned via a callback function and this allows the other users to use the avtive thread for various other operatinos. <br>Not all callbacks are async.
+> For each application only one thread is available. This means when ever the code runs, it can be executed on a single thread only, irrespective of the number of users or applicatioons accessing the thread. Only one thread is available to all. So, when a single user blocks the thread with a sync function, the other application or users can not use the thread for execution. Thus the callbacks based async functions are used. The function can process in the background and the result is returned via a callback function and this allows the other users to use the avtive thread for various other operatinos. <br>Not all callbacks are async.
 
 The problem -> Callback Hell
 
@@ -107,7 +107,7 @@ this indicates a dev dependency required during the build cycle. Some dependency
 
 ### How the web works
 
-> Web works with the request-response model or the client-server architecture. <br> https://www.google.com/maps/ - https/http refers to protocol, www.google.com refers to the domain name, and /maps refers to the rsource requested.
+> Web works with the request-response model or the client-server architecture. <br> https://www.google.com/maps/ - https/http refers to protocol, www.google.com refers to the domain name, and /maps refers to the resource requested.
 > <br>
 > Client browser does a DNS lookup for the domain name and the path may look as below.
 > <br> https://216.58.211.206:443/ <br> port 443 - HTTPS request and <br> port - 80 HTTP request
@@ -182,6 +182,7 @@ Optimising using pipes
 > server.on("request", (req, res) => {<br>const readable = fs.createReadStream("test-file.txt"); <br>
 > readable.pipe(res); }); <br>
 > // readabelSource.pipe(writableDestinations)
+
 
 # Express JS
 
