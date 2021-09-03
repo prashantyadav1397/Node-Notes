@@ -191,7 +191,7 @@ Consuming Promises
 
 Consuming Promises with await
 
-> const asyncget = () = > {<br> try { <br> const data = await axios.get('https://github.com/')<br> } catch(err) {<br> console.log(err) } <br>}
+> const asyncGet = async () = > {<br> try { <br> const data = await axios.get('https://github.com/')<br> } catch(err) {<br> console.log(err) } <br>} <br> asyncGet();
 
 # Express JS
 
