@@ -227,4 +227,34 @@ Adding optional Parameters
 
 > app.get('/api/v1/tours/:id?, (req, res)=>{<br> console.log( req.params);<br>}); <br>Here :id? refers to an optional parameter in the request URL who's value may not be sent as part of the request URL.
 
+### Refactoring the Routes
+
+> app.get('/', (req, res) => { <br>
+> res.status(200).json({ message: 'hello from the server', app: 'Natours' }); <br>
+> });
+
+This can be written as below: -
+
+> const defaultRoute = (req, res) => { <br>
+> res.status(200).json({ message: 'hello from the server', app: 'Natours' }); <br>
+> } <br><br> app.get( '/', defaultRoute );
+
+Chaining the Routes
+
+> app.route( '/api/v1/tours' ).get( getTours ).post( updateTours );
+
+### Express Development: The Request - Response Cycle
+
+> Incoming Request --> Middleware --> Response
+> <br><ol><li>Incoming Request - req obj and res obj</li><li>Middleware<ol><li>next() - parsing the body</li><li>next() - Logging</li><li>next() - Setting Headers</li><li>res.send() - router</li></ol></li><li>Response</li></ol>
+
+Creating a middleware
+
+> app.use((req, res, next) => { <br>
+> req.reqTime = new Date().toISOString(); <br>
+> next(); <br>
+> }); <br><br>app.get('/', (req, res) => {
+> res.status(200).json({requestedAt: req.reqTime,}); <br>
+> }); <br>The middleware are executed in order of the creation. Thus, if the middleware is defined after the route, that middleware will not be used by the request or currrently called route.
+
 # Mongo DB
