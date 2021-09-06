@@ -310,7 +310,9 @@ Create
 
 Read
 
-> db.tours.find() - returns all the data in the tours collection <br><br> db.tours.find({ name:"River" }) - returns data for all the document with name = River.<br> <br> db.tours.find({ price: { $lte: 500 } }) - returns the data for tours with price < 500. $lte is mongo representation for less than and the comparison works again with an object defined as $lte. <br> <br> db.tours.find({ price: { $lte: 450 }, rating: { $gte: 4.5 } }) - return data by considering both the conditions to be true. <br><br> db.tours.find({ $or: [ {price: {$lte:450}}, {rating: {$gte:4.5}} ] }) - this returns data if either of the one condition hold true.<br><br>db.tours.find({price : {$lte:450}, rating :{$gte:4.5}}, {name:1} ) - returns only the name in the document that satisfies the comdition. <br> Output: - { "_id" : ObjectId("6135dd41558c29c68e93fa8b"), "name" : "Mountain" }
+> db.tours.find() - returns all the data in the tours collection <br><br> db.tours.find({ name:"River" }) - returns data for all the document with name = River.<br> <br> db.tours.find({ price: { $lte: 500 } }) - returns the data for tours with price < 500. $lte is mongo representation for less than and the comparison works again with an object defined as $lte. <br> <br> db.tours.find({ price: { $lte: 450 }, rating: { $gte: 4.5 } }) - return data by considering both the conditions to be true. <br><br> db.tours.find({ $or: [ {price: {$lte:450}}, {rating: {$gte:4.5}} ] }) - this returns data if either of the one condition hold true.<br><br>db.tours.find({price : {$lte:450}, rating :{$gte:4.5}}, {name:1} ) - returns only the name in the document that satisfies the comdition. <br> Output: - { "\_id" : ObjectId("6135dd41558c29c68e93fa8b"), "name" : "Mountain" }
 
 Update
->
+
+> db.tours.updateOne( {name:"River"}, { $set:{price: 1000} }) - updates one document with one field change
+<br><br>  db.tours.updateOne( {name:"River"}, { $set:{price: 800 ,rating:4.9} }) - updates multiple field for a given document. <br><br> db.tours.updateMany({rating :{$lt:4.9}, price:{$lte:500}} , {$set:{premium:false}}) - updates the fields for multiple document based on the condition. <br><br> db.tours.replaceOne( {name:"River"} , {test:"test"} ) - db.tours.replaceOne( {search_condition} , {new_data_to_be_updated} ) - replaces the entire data of the matching document with the new data.
