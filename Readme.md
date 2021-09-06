@@ -257,4 +257,8 @@ Creating a middleware
 > res.status(200).json({requestedAt: req.reqTime,}); <br>
 > }); <br>The middleware are executed in order of the creation. Thus, if the middleware is defined after the route, that middleware will not be used by the request or currrently called route.
 
+Param Middleware
+
+> const router = express.Router(); <br> <br> router.param( 'id' , ( req, res, next, val ) =>{<br> console.log( '`Tour id is: ${val}`' );<br> next();<br> }); <br><br> router.route( '/:id' )<br>.get( getAllTours )<br>.post( createNewTour );
+
 # Mongo DB
