@@ -315,4 +315,8 @@ Read
 Update
 
 > db.tours.updateOne( {name:"River"}, { $set:{price: 1000} }) - updates one document with one field change
-<br><br>  db.tours.updateOne( {name:"River"}, { $set:{price: 800 ,rating:4.9} }) - updates multiple field for a given document. <br><br> db.tours.updateMany({rating :{$lt:4.9}, price:{$lte:500}} , {$set:{premium:false}}) - updates the fields for multiple document based on the condition. <br><br> db.tours.replaceOne( {name:"River"} , {test:"test"} ) - db.tours.replaceOne( {search_condition} , {new_data_to_be_updated} ) - replaces the entire data of the matching document with the new data.
+<br><br>  db.tours.updateOne( {name:"River"}, { $set:{price: 800 ,rating:4.9} }) - updates multiple field for a given document. <br><br> db.tours.updateMany({rating :{$lt:4.9}, price:{$lte:500}} , {$set:{premium:false}}) - updates the fields for multiple document based on the condition. <br><br> db.tours.replaceOne( {name:"River"} , {test:"test"} ) -> db.tours.replaceOne( {search_condition} , {new_data_to_be_updated} ) - replaces the entire data of the matching document with the new data.
+
+Delete
+
+> db.tours.deleteOne({ name:"test"}) - removes one entry from the collection<br><br> db.tours.deleteMany({ premium:false}) - removes multiple document entries, if exists from the collection based on the condition. <br><br> db.tours.deleteMany( {} ) - removes all the documents from the collection. This operation is irreversible and must be done with caution.
