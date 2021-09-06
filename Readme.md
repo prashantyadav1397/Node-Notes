@@ -265,6 +265,43 @@ Serving Static Files
 
 > app.use( express.static ( '`${__dirname}/public`' ) );
 
+### Connecting to MongoDB using Express
+
+Connecting to local or hosted database
+
+> const mongoose = require('mongoose'); <br> const DB = process.env.DATABASE_URI; <br> mongoose <br>
+> .connect(DB, { <br> useUnifiedTopology: true,<br> useNewUrlParser: true, <br> useCreateIndex: true, <br> useFindAndModify: false <br>}) <br>
+> .then(conn => console.log(conn.connections))<br>.catch(err => console.log(err));
+
+### Creating a Document Model - Schema in Express for MongoDB Collection
+
+> const tourSchema = new mongoose.Schema({ <br>
+> name: { <br>
+> type: String, <br>
+> required: [true, 'A tour must have a name'], <br>
+> unique: true <br>
+> }, <br>
+> rating: { type: Number, default: 4.5 }, <br>
+> price: { type: Number, required: [true, 'A tour must have a price'] } <br>
+> }); <br><br>
+> const Tour = mongoose.model('Tour', tourSchema);
+
+### Creating a Document in MongoDB Collection using Express
+
+> const newTour = new Tour({ <br> name: 'The Park Camper', <br> price: 497 <br> });
+> <br><br>newTour <br>
+> .save() <br>
+> .then(doc => { <br>
+> console.log(doc); <br>
+> }) <br>
+> .catch(err => { <br>
+> console.log(err); <br>
+> });
+
+### Backend Architecture - MVC, Logic Types and more
+
+>
+
 # Mongo DB
 
 What is Mongo DB?
