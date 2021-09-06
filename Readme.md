@@ -261,4 +261,56 @@ Param Middleware
 
 > const router = express.Router(); <br> <br> router.param( 'id' , ( req, res, next, val ) =>{<br> console.log( '`Tour id is: ${val}`' );<br> next();<br> }); <br><br> router.route( '/:id' )<br>.get( getAllTours )<br>.post( createNewTour );
 
+Serving Static Files
+
+> app.use( express.static ( '`${__dirname}/public`' ) );
+
 # Mongo DB
+
+What is Mongo DB?
+
+> Mongo is a NoSQL database. Tables in Mongo DB are known as Collections and data rows are called Document with data format similar to JSON. <br> Mongo DB stores data in Documents (field-value pair data structures). <br> Mongo DB is scalable to distribute data across multiple machines as the users or amount of data grows. <br> Flexible - No document data schema required, so each document can have different number and type of fields. <br> Preformant - Embedded data models, indexing, sharding, flexible documents, native duplication, etc.
+
+### Working with MongoDB
+
+> Create the database directory to store the collections on localhost. <br>
+>
+> > md c:\data\db
+
+> Run "mongod" command from terminal to start the server. On a new termial run "mongo" command to start accessing the server via shell.
+
+Creating or Accessing a Database
+
+> use <collectino_name><br> Ex:- use natours-test
+
+Listing all the existing databases
+
+> show dbs
+
+Creating a new Collections with data
+
+> db.tours.insertOne( { name:"Forest", price:297, rating:4.7 } ) <br> This will generate an entry in the tours collection for the current database instance db. The result of the above query will look like: - <br>{ <br>"acknowledged" : true, <br> "insertedId" : ObjectId("6135db10558c29c68e93fa89") <br>}
+
+Reading a Existing Document in the Collection
+
+> db.tours.find()
+> <br> This will provide the documents currently in the Collection. <br>
+> { "\_id" : ObjectId("6135da64558c29c68e93fa88"), "name" : "Forest", "price" : 297, "rating" : 4.7 }
+> <br>{ "\_id" : ObjectId("6135db10558c29c68e93fa89"), "name" : "River", "price" : 297, "rating" : 4.7 }
+
+Listing all the Collection in the current Database.
+
+> show collection
+
+### CRUD Operations in Mongo DB
+
+Create
+
+> db.tours.insertMany( [ <br>{ name:"River", price:297, rating:4.7 }, <br>{ name:"Mountain", price:297, rating:4.7 } <br>] ) <br> This will result in the below output: - <br>{ <br> "acknowledged" : true, <br> "insertedIds" : [ <br> ObjectId("6135dd41558c29c68e93fa8a"), <br> ObjectId("6135dd41558c29c68e93fa8b") <br> ] <br> }
+
+Read
+
+> db.tours.find() - returns all the data in the tours collection <br><br> db.tours.find({ name:"River" }) - returns data for all the document with name = River.<br> <br> db.tours.find({ price: { $lte: 500 } }) - returns the data for tours with price < 500. $lte is mongo representation for less than and the comparison works again with an object defined as $lte. <br> <br> db.tours.find({ price: { $lte: 450 }, rating: { $gte: 4.5 } }) - return data by considering both the conditions to be true. <br><br> db.tours.find({ $or: [ {price: {$lte:450}}, {rating: {$gte:4.5}} ] }) - this returns data if either of the one condition hold true.<br><br>db.tours.find({price : {$lte:450}, rating :{$gte:4.5}}, {name:1} ) - returns only the name in the document that satisfies the comdition. <br> Output: - { "_id" : ObjectId("6135dd41558c29c68e93fa8b"), "name" : "Mountain" }
+
+Update
+>
