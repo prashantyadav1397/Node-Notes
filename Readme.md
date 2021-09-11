@@ -300,7 +300,13 @@ Connecting to local or hosted database
 
 ### Backend Architecture - MVC, Logic Types and more
 
->
+> MVC components <ul><li>Model - Business Logic</li><li>View - Presentation Logic</li><li>Controller - Application Logic </li></ul>
+
+Application Vs Business Logic
+
+> Application <ul><li>Managing requests and responses</li><li>Bridge between model and view logic</li></ul>
+> Business <ul><li>How the business works, or the business needs</li><li>Example: - <ul><li>Creating a new Collection in the database</li><li>Checking if user password is correct</li><li>Validating users input data</li><li>Ensure authenticated access</li></ul></li></ul>
+> Offload as much as logic as possible into the models and keep the controllers are simple and lean as possible.
 
 # Mongo DB
 
