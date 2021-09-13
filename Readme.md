@@ -313,6 +313,10 @@ Application Vs Business Logic
 > // destructuring the query params to create a query object
 > <br>const queryObj = { ...req.query }; <br> const excludedFields = ['page', 'sort', 'limit', 'fields']; <br> excludedFields.forEach(el => delete queryObj[el]); <br><br>let queryStr = JSON.stringify(queryObj); <br> queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => { <br> return `$${match}`; <br> }); <br><br> const query = Tour.find(JSON.parse(queryStr)); <br> const tours = await query;
 
+### Sorting the results - Using query parameters
+
+> let query = Tour.find(JSON.parse(queryStr)); <br><br>// Ascending Sorting - 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&<strong>sort=price</strong> <br> if (req.query.sort) { <br> query = query.sort(req.query.sort); <br> }<br><br>// Descending Sorting - 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&<strong>sort=-price</strong> <br> if (req.query.sort) { <br> query = query.sort(req.query.sort); <br> }
+
 # Mongo DB
 
 What is Mongo DB?
