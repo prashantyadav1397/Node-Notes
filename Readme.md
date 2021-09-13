@@ -315,11 +315,24 @@ Application Vs Business Logic
 
 ### Sorting the results - Using query parameters
 
-> let query = Tour.find(JSON.parse(queryStr)); <br><br>// Ascending Sorting - 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&<strong>sort=price</strong> <br> if (req.query.sort) { <br> query = query.sort(req.query.sort); <br> }<br><br>// Descending Sorting - 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&<strong>sort=-price</strong> <br> if (req.query.sort) { <br> query = query.sort(req.query.sort); <br> }
+> let query = Tour.find(JSON.parse(queryStr)); <br><br>// Ascending Sorting - 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&<strong>sort=price</strong> <br> if (req.query.sort) { <br> query = query.sort(req.query.sort); <br> }<br><br>// Descending Sorting - 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&<strong>sort=-price</strong> <br> if (req.query.sort) { <br> query = query.sort(req.query.sort); <br> } <br> const tours = await query;
 
 Multiple fields in sorting
 
-> // 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&sort=-price,-ratingsAverage <br><br> if (req.query.sort) { <br> const sortBy = req.query.sort.split(',').join(' '); <br> query = query.sort(sortBy); <br>}
+> // 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&sort=-price,-ratingsAverage <br><br> if (req.query.sort) { <br> const sortBy = req.query.sort.split(',').join(' '); <br> query = query.sort(sortBy); <br>} <br> const tours = await query;
+
+### Field Limiting - Using query parameters
+
+> Field limiting also known as projecting <br>// 127.0.0.1:3000/api/v1/tours?fields=name,duration,difficulty <br><br>
+> if (req.query.fields) { <br> const field = req.query.fields.split(',').join(' '); <br> // Example - query = query.select('name duration price'); <br> query = query.select(field); <br> } <br> const tours = await query;
+
+Field limiting at schema level
+
+> createdAt: { type: Date, default: Date.now(), <strong>select: false </strong>},
+
+### Pagination - Using query parameters
+
+> // page=2$limit=10 <br> // query = query.skip(10).limit(10) <br><br> const page = req.query.page \* 1 || 10; <br> const limit = req.query.limit _ 1 || 100; <br> const skip = (page - 1) _ limit; <br> query = query.skip(skip).limit(limit); <br> const tours = await query;
 
 # Mongo DB
 
