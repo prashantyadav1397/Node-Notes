@@ -308,6 +308,11 @@ Application Vs Business Logic
 > Business <ul><li>How the business works, or the business needs</li><li>Example: - <ul><li>Creating a new Collection in the database</li><li>Checking if user password is correct</li><li>Validating users input data</li><li>Ensure authenticated access</li></ul></li></ul>
 > Offload as much as logic as possible into the models and keep the controllers are simple and lean as possible.
 
+### Filtering the results - Using query parameters
+
+> // destructuring the query params to create a query object
+> <br>const queryObj = { ...req.query }; <br> const excludedFields = ['page', 'sort', 'limit', 'fields']; <br> excludedFields.forEach(el => delete queryObj[el]); <br><br>let queryStr = JSON.stringify(queryObj); <br> queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => { <br> return `$${match}`; <br> }); <br><br> const query = Tour.find(JSON.parse(queryStr)); <br> const tours = await query;
+
 # Mongo DB
 
 What is Mongo DB?
