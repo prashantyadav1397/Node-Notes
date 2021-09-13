@@ -317,6 +317,10 @@ Application Vs Business Logic
 
 > let query = Tour.find(JSON.parse(queryStr)); <br><br>// Ascending Sorting - 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&<strong>sort=price</strong> <br> if (req.query.sort) { <br> query = query.sort(req.query.sort); <br> }<br><br>// Descending Sorting - 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&<strong>sort=-price</strong> <br> if (req.query.sort) { <br> query = query.sort(req.query.sort); <br> }
 
+Multiple fields in sorting
+
+> // 127.0.0.1:3000/api/v1/tours?difficulty=easy&duration[gte]=5&sort=-price,-ratingsAverage <br><br> if (req.query.sort) { <br> const sortBy = req.query.sort.split(',').join(' '); <br> query = query.sort(sortBy); <br>}
+
 # Mongo DB
 
 What is Mongo DB?
