@@ -334,6 +334,10 @@ Field limiting at schema level
 
 > // page=2$limit=10 <br> // query = query.skip(10).limit(10) <br><br> const page = req.query.page \* 1 || 10; <br> const limit = req.query.limit _ 1 || 100; <br> const skip = (page - 1) _ limit; <br> query = query.skip(skip).limit(limit); <br> const tours = await query;
 
+### Aggregation Pipeline - Matching and Grouping
+
+> const stats = await Tour.aggregate([ <br> { <br> $match: { ratingsAverage: { $gte: 4.5 } } <br> }, <br> { <br> $group: { <br> _id: { $toUpper: '$difficulty' }, <br> // _id: '$ratingsAverage', <br> numRatings: { $sum: '$ratingsQuantity' }, <br> numTours: { $sum: 1 }, <br> avgRating: { $avg: '$ratingsAverage' }, <br> avgPrice: { $avg: '$price' }, <br> minPrice: { $min: '$price' }, <br> maxPrice: { $max: '$price' } <br> } <br> }, <br> { <br> $sort: { <br> avgPrice: 1 <br> } <br> }, <br> // { <br> // $match: { _id: { $ne: 'EASY' } } <br> // } <br> ]);
+
 # Mongo DB
 
 What is Mongo DB?
