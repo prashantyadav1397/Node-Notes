@@ -338,6 +338,15 @@ Field limiting at schema level
 
 > const stats = await Tour.aggregate([ <br> { <br> $match: { ratingsAverage: { $gte: 4.5 } } <br> }, <br> { <br> $group: { <br> _id: { $toUpper: '$difficulty' }, <br> // _id: '$ratingsAverage', <br> numRatings: { $sum: '$ratingsQuantity' }, <br> numTours: { $sum: 1 }, <br> avgRating: { $avg: '$ratingsAverage' }, <br> avgPrice: { $avg: '$price' }, <br> minPrice: { $min: '$price' }, <br> maxPrice: { $max: '$price' } <br> } <br> }, <br> { <br> $sort: { <br> avgPrice: 1 <br> } <br> }, <br> // { <br> // $match: { _id: { $ne: 'EASY' } } <br> // } <br> ]);
 
+### Aggregation Pipeline - Unwinding and Projection
+
+> const plan = await Tour.aggregate([ <br> { <br> $unwind: '$startDates' <br> }, <br> { <br> $match: { <br> startDates: { <br> $gte: new Date( `${year}-01-01` ), <br> $lte: new Date( `${year}-12-31` ) <br> } <br> } <br> }, <br> { <br> $group: { <br> _id: { $month: '$startDates' }, <br> numTourStarts: { $sum: 1 }, <br> tours: { $push: '$name' } <br> } <br> }, <br> { <br> $addFields: { month: '$_id' } <br> }, <br> { <br> $project: { _id: 0 } <br> }, <br> { <br> $sort: { numTourStarts: -1 } <br> }, <br> // { <br> // $limit: 12 <br> // } <br> ]);
+
+### Virtual Properties
+
+> Virtual properties are not defined at the collection level and are defined at the Schema level. These properties will not be available for querying the actual document in the collections.
+> <br>const tourSchema = new mongoose.Schema( <br> { <br> ... <br> }, {<br> toJSON: { virtuals: true }, <br> toObject: { virtuals: true } <br> } <br> ); <br> <br> tourSchema.virtual('durationWeeks').get(function() { <br> return this.duration / 7; <br> }); <br><br> const Tour = mongoose.model('Tour', tourSchema);
+
 # Mongo DB
 
 What is Mongo DB?
