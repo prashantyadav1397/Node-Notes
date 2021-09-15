@@ -430,6 +430,23 @@ Handling Uncaught Exception
 > process.exit(1); <br>
 > }); <br>
 
+### Authentication, Authorization and Security
+
+> npm i bcryptjs <br> npm package for password hashing
+
+Document middleware for hashing passwords
+
+> userSchema.pre('save', async function(next) { <br>
+> if (!this.isModified('password')) return next(); <br>
+> // cryptographing the password <br>
+> this.password = await bcrypt.hash(this.password, 12); <br>
+> this.passwordConfirm = undefined; <br> next(); <br>
+> });
+
+Authentication with JWT (JSON web token) - How JWT Works?
+
+> In simple terms <ol><li>Client sends request to server over a HTTPS commection with email/username and password.</li><li>Server checks the user exists and details are correct.</li><li>If the details are correct, a unique JWT is created with a secret stored on the server and sent back.</li><li>Client stores the token either as a cookie or local storage.</li><li>If the user wants to request a protected resource on the server, the user sends the JWT with the request.</li><li>If the JWT is valid, requested data is sent back, else error.</li></ol>All the communication must happen over a secured HTTPS connection. <br><br> Parts of a JWT decoded <ul><li>Header - metadata about the token.</li><li>Payload - data to be encoded in the token.</li><li>Verify Signature - is created using the header, payload and the secret to create a signature</li></ul> <br> Verifying the JWT <ol><li>When a JWT is received, a test signature is constructed with the header+payload in the JWT and the secret on the server</li><li>The JWT consists of a original signature sent with the token.</li><li>Compare the test signature with the original signature</li><li> If, testSignature === originalSignature => Data is not modified, Authenticated</li><li> If, testSignature !== originalSignature => Data is modified, Not Authenticated</li></ol> Without the secret, the signature can't be created again.
+
 # Mongo DB
 
 What is Mongo DB?
