@@ -373,6 +373,18 @@ Aggregation Middleware
 > next(); <br>
 > });
 
+### Custom Validators - Schema Level Validation
+
+> {<br> ... <br> priceDiscount: { <br> type: Number, <br> validate: { <br> validator: function(value) { <br> return value < this.price; <br> }, <br> message: 'Discount price should be below the regular price' <br> } <br> ... <br> },
+
+### Error Handling with Express
+
+Debugging Node.js with ndb
+
+> npm i ndb --global <br><br>
+> define a script in the package.json
+> "scripts": { <br> "debug" :"ndb server.js" <br> },
+
 # Mongo DB
 
 What is Mongo DB?
