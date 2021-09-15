@@ -344,8 +344,34 @@ Field limiting at schema level
 
 ### Virtual Properties
 
-> Virtual properties are not defined at the collection level and are defined at the Schema level. These properties will not be available for querying the actual document in the collections.
-> <br>const tourSchema = new mongoose.Schema( <br> { <br> ... <br> }, {<br> toJSON: { virtuals: true }, <br> toObject: { virtuals: true } <br> } <br> ); <br> <br> tourSchema.virtual('durationWeeks').get(function() { <br> return this.duration / 7; <br> }); <br><br> const Tour = mongoose.model('Tour', tourSchema);
+> Virtual properties are not defined at the collection level and are defined at the Schema level. These properties will not be available for querying the actual document in the collections. <br> <br>const tourSchema = new mongoose.Schema( <br> { <br> ... <br> }, {<br> toJSON: { virtuals: true }, <br> toObject: { virtuals: true } <br> } <br> ); <br> <br> tourSchema.virtual('durationWeeks').get(function() { <br> return this.duration / 7; <br> }); <br><br> const Tour = mongoose.model('Tour', tourSchema);
+
+### Middlewares in Mongoose
+
+> <ul> <li>Document</li> <li>Query</li> <li>Aggregate</li> <li>Date model</li> </ul>
+
+Document Middleware
+
+> // Document Middleware : runs before .save() and .create() functions only <br><br> tourSchema.pre('save', function(next) { <br> this.slug = slugify( this.name, { lower: true }); <br> next(); <br> });
+
+Query Middleware
+
+> // Query middleware : .find() <br><br>
+> // tourSchema.pre('find', function(next) { <br>
+> tourSchema.pre(/^find/, function(next) { <br>
+> this.find({ secretTour: { $ne: true } }); <br>
+> this.start = Date.now(); <br>
+> next(); <br>
+> });
+
+Aggregation Middleware
+
+> // Aggregation Middleware : .aggregate() <br><br>
+> tourSchema.pre('aggregate', function(next) { <br>
+> this.pipeline().unshift({ $match: { secretTour: { $ne: true } } }); <br>
+> console.log(this.pipeline()); <br>
+> next(); <br>
+> });
 
 # Mongo DB
 
