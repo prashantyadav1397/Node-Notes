@@ -385,6 +385,36 @@ Debugging Node.js with ndb
 > define a script in the package.json
 > "scripts": { <br> "debug" :"ndb server.js" <br> },
 
+Handling unhandled Routes
+
+> app.use('/api/v1/tours', tourRouter); <br>
+> app.use('/api/v1/users', userRouter); <br> <br>
+> app.all('\*', (req, res, next) => { <br>
+> // console.log(req.originalUrl); <br>
+> res.status(404).json({ <br> status: 'failed', <br> message: `Can not find ${req.originalUrl} resource on this server!` <br> }); <br>
+> });
+
+Overview of Error Handling
+
+> <ol><li>Operational Errors <ul><li>Invalid path request</li> <li>Invalid user input</li><li>Failed to connect to the server</li><li>Failed to connect to the database</li><li>Request Timeout, etc.</li></ul></li> <li>Programming Errors <ul><li>Reading properties on undefined</li> <li>Using await with async and vice-versa</li><li>Using req.query instead of req.body</li><li>Passing a number where an object is expected, etc.</li></ul></li> </ol>
+
+Implementing a global error handling middleware
+
+> app.use((err, req, res, next) => { <br>
+> err.statusCode = err.statusCode || 500; <br>
+> err.status = err.status || 'error'; <br>
+> res.status(err.statusCode).json({ <br> status: err.status, <br> message: err.message <br>
+> }); <br>
+> }); <br><br>
+> Refracting the error handler as a separate module <br><br>
+> module.exports = (err, req, res, next) => { <br>
+> err.statusCode = err.statusCode || 500; <br>
+> err.status = err.status || 'error'; <br>
+> res.status(err.statusCode).json({ <br> status: err.status, <br> message: err.message <br>
+> }); <br>
+> next(); <br>
+> };
+
 # Mongo DB
 
 What is Mongo DB?
