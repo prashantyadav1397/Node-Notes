@@ -415,6 +415,21 @@ Implementing a global error handling middleware
 > next(); <br>
 > };
 
+### Unhandled Promise Rejection and Uncaught Exception
+
+Handling Promise Rejection
+
+> process.on('unhandledRejection', err => { <br>
+> console.log(err.name, err.message); <br>
+> server.close(() => { <br> process.exit(1); <br> }); <br> });
+
+Handling Uncaught Exception
+
+> process.on('uncaughtException', err => { <br>
+> console.log(err.name, err.message); <br>
+> process.exit(1); <br>
+> }); <br>
+
 # Mongo DB
 
 What is Mongo DB?
